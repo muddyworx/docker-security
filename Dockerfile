@@ -1,6 +1,6 @@
 FROM alpine:3.12
 
-MAINTAINER PS <psellars@gmail.com>
+LABEL maintainer="psellars@gmail.com"
 
 RUN apk add --no-cache \
     curl \
