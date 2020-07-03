@@ -9,10 +9,10 @@ RUN apk add --no-cache \
     rsync
 
 ENV VERSION 0.64.0
-RUN mkdir -p /usr/local/src \
-    && cd /usr/local/src \
-
-    && curl -L \
+RUN mkdir -p /usr/local/src
+WORKDIR /usr/local/src
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN curl -L \
       https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_linux-64bit.tar.gz \
       | tar -xz \
     && mv hugo /usr/local/bin/hugo \
