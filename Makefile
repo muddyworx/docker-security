@@ -2,15 +2,15 @@ include make_env
 
 default: build
 
-build: Dockerfile
+static-test: Dockerfile
+	@echo "Static analysis on Dockerfile..."
+	@hadolint Dockerfile
+
+build: static-test
 	@echo "Building Hugo Builder container..."
 	@docker build -t lp/hugo-builder .
 	@echo "Hugo Builder container built!"
 	@docker images lp/hugo-builder
-
-static-test: build
-	@echo "Static analysis on Dockerfile..."
-	@hadolint Dockerfile
 
 generate: static-test
 	@echo "Generating static site..."
