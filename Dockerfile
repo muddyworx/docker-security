@@ -11,7 +11,7 @@ RUN apk add --no-cache \
 ENV VERSION 0.64.0
 RUN mkdir -p /usr/local/src
 WORKDIR /usr/local/src
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN curl -L \
       https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_linux-64bit.tar.gz \
       | tar -xz \
