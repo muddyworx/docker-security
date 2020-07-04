@@ -16,10 +16,6 @@ RUN curl -L \
       | tar -xz \
     && mv hugo /usr/local/bin/hugo \
 
-    && curl -L \
-      https://bin.equinox.io/c/dhgbqpS8Bvy/minify-stable-linux-amd64.tgz | tar -xz \
-    && mv minify /usr/local/bin/ \
-
     && addgroup -Sg 1000 hugo \
     && adduser -SG hugo -u 1000 -h /src hugo
 
