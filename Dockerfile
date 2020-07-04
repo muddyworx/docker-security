@@ -9,7 +9,6 @@ RUN apk add --no-cache \
     rsync
 
 ENV VERSION 0.64.0
-RUN mkdir -p /usr/local/src
 WORKDIR /usr/local/src
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
 RUN curl -L \
