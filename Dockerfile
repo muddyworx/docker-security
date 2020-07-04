@@ -1,4 +1,6 @@
-FROM alpine:3.12
+ARG ALPINE_VERSION=3.12
+
+FROM alpine:${ALPINE_VERSION}
 
 LABEL maintainer="psellars@gmail.com"
 
