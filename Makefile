@@ -8,7 +8,11 @@ build: Dockerfile
 	@echo "Hugo Builder container built!"
 	@docker images lp/hugo-builder
 
-generate: build
+static-test: build
+	@echo "Static analysis on Dockerfile..."
+	@hadolint Dockerfile
+
+generate: static-test
 	@echo "Generating static site..."
 	@docker run --rm --name=hugo $(VOLUMES) lp/hugo-builder hugo
 
@@ -20,4 +24,4 @@ stop:
 	@echo "Stopping Hugo-builder..."
 	@docker container stop hugo
 
-.PHONY: build generate start-server stop
+.PHONY: build generate start-server stop static-test
