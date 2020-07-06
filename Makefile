@@ -4,8 +4,14 @@ default: build
 
 static-test: Dockerfile
 	@echo "Static analysis on Dockerfile..."
+	@echo "Running Hadolint..."
 	@docker run --rm -i hadolint/hadolint:v1.17.5-alpine \
-            hadolint --ignore DL3018 - < Dockerfile
+			hadolint --ignore DL3018 - < Dockerfile
+	@echo "Hadolint passed."
+	@echo "Running dockerfile_lint..."
+	@docker run --rm -i -v $(PWD):/root/ projectatomic/dockerfile-lint \
+			dockerfile_lint -f Dockerfile -r policies/combined_rules.yml
+	@echo "dockerfile_lint passed."
 
 build: static-test
 	@echo "Building Hugo Builder container..."

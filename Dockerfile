@@ -26,6 +26,8 @@ RUN wget \
         && addgroup -Sg 1000 hugo \
         && adduser -SG hugo -u 1000 -h /src hugo
 
+USER hugo
+
 WORKDIR /src
 
 EXPOSE 1313
