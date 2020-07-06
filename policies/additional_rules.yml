@@ -2,7 +2,17 @@
 profile:
   name: "Additional application rules"
   description: "Additional security rules for Hugo Builder"
+
 line_rules:
+  LABEL:
+    paramSyntaxRegex: /.+/
+    defined_namevals:
+      Maintainer:
+        valueRegex: /.+\@.+\..+/
+        message: "Label 'Maintainer' is missing or invalid."
+        level: "error"
+        required: true
+
   FROM:
     paramSyntaxRegex: /.+/
     rules:
@@ -25,3 +35,11 @@ line_rules:
         reference_url:
           - "https://docs.docker.com/engine/reference/builder/"
           - "#from"
+
+required_instructions:
+  -
+    instruction: "LABEL"
+    count: 1
+    level: "error"
+    message: "No 'LABEL' instruction in the file."
+    description: "The Dockerfile should contain a 'LABEL' instruction with at least the maintainer tag"
