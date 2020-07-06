@@ -5,7 +5,6 @@ FROM alpine:${ALPINE_VERSION}
 LABEL maintainer="psellars@gmail.com"
 
 RUN apk add --no-cache \
-    curl \
     git \
     openssh-client \
     rsync
@@ -13,13 +12,20 @@ RUN apk add --no-cache \
 ENV VERSION 0.64.0
 WORKDIR /usr/local/src
 SHELL ["/bin/ash", "-o", "pipefail", "-c"]
-RUN curl -L \
-      https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_linux-64bit.tar.gz \
-      | tar -xz \
-    && mv hugo /usr/local/bin/hugo \
+RUN wget \
+    https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_linux-64bit.tar.gz
 
-    && addgroup -Sg 1000 hugo \
-    && adduser -SG hugo -u 1000 -h /src hugo
+RUN wget \
+    https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_checksums.txt \
+        && sed -i '/hugo_[0-9].*Linux-64bit.tar.gz/!d' \
+           hugo_${VERSION}_checksums.txt \
+        && sha256sum -cs hugo_${VERSION}_checksums.txt \
+        && tar -xzvf hugo_"${VERSION}"_Linux-64bit.tar.gz \
+
+        && mv hugo /usr/local/bin/hugo \
+
+        && addgroup -Sg 1000 hugo \
+        && adduser -SG hugo -u 1000 -h /src hugo
 
 WORKDIR /src
 
