@@ -12,7 +12,7 @@ build: static-test
 	@echo "Hugo Builder container built!"
 	@docker images lp/hugo-builder
 
-generate: static-test
+generate: build
 	@echo "Generating static site..."
 	@docker run --rm --name=hugo $(VOLUMES) lp/hugo-builder hugo
 
