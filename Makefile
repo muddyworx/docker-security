@@ -10,7 +10,7 @@ static-test: Dockerfile
 	@echo "Hadolint passed."
 	@echo "Running dockerfile_lint..."
 	@docker run --rm -i -v $(PWD):/root/ projectatomic/dockerfile-lint \
-			dockerfile_lint -f Dockerfile -r policies/additional_rules.yml
+			dockerfile_lint -f Dockerfile -r policies/combined_rules.yml
 	@echo "dockerfile_lint passed."
 
 build: static-test
