@@ -18,13 +18,13 @@ RUN wget \
 
 RUN wget \
     https://github.com/gohugoio/hugo/releases/download/v${VERSION}/hugo_${VERSION}_checksums.txt \
-    && sed -i '/hugo_[0-9].*Linux-64bit.tar.gz/!d' \
-    hugo_${VERSION}_checksums.txt \
-    && sha256sum -cs hugo_${VERSION}_checksums.txt \
-    && tar -xzvf hugo_"${VERSION}"_Linux-64bit.tar.gz \
-    && mv hugo /usr/local/bin/hugo \
-    && addgroup -Sg 1000 hugo \
-    && adduser -SG hugo -u 1000 -h /src hugo
+        && sed -i '/hugo_[0-9].*Linux-64bit.tar.gz/!d' \
+            hugo_${VERSION}_checksums.txt \
+        && sha256sum -cs hugo_${VERSION}_checksums.txt \
+        && tar -xzvf hugo_"${VERSION}"_Linux-64bit.tar.gz \
+        && mv hugo /usr/local/bin/hugo \
+        && addgroup -Sg 1000 hugo \
+        && adduser -SG hugo -u 1000 -h /src hugo
 
 WORKDIR /src
 
