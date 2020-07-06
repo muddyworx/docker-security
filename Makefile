@@ -6,6 +6,8 @@ static-test: Dockerfile
 	@echo "Static analysis on Dockerfile..."
 	@docker run --rm -i hadolint/hadolint:v1.17.5-alpine \
             hadolint --ignore DL3018 - < Dockerfile
+	@docker run --rm -v $(PWD):/root/ projectatomic/dockerfile-lint \
+			dockerfile_lint -f Dockerfile -r policies/security_rules.yml
 
 build: static-test
 	@echo "Building Hugo Builder container..."
