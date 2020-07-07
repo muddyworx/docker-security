@@ -19,7 +19,11 @@ build: static-test
 	@echo "Hugo Builder container built!"
 	@docker images lp/hugo-builder
 
-generate: build
+image-scan: build
+	@echo "Scanning build image..."
+	@clair-scanner --ip $(LOCAL_IP) lp/hugo-builder
+
+generate: image-scan
 	@echo "Generating static site..."
 	@docker run --rm --name=hugo $(VOLUMES) lp/hugo-builder hugo
 
@@ -31,4 +35,4 @@ stop-server:
 	@echo "Stopping Hugo-builder..."
 	@docker container stop hugo
 
-.PHONY: build generate start-server stop-server static-test
+.PHONY: build generate start-server stop-server static-test image-scan
