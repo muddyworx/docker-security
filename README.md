@@ -19,3 +19,6 @@ for this version of Fusionauth is too old.
 * There are many unnecessary packages listed for a production build. This increases 
 the attack surface. It looks like the base OS may be debian, when a smaller package 
 like Alpine should be used.
+* Realizing not getting CVE positives on old versions of Alpine may be part of the lesson. 
+The slimmer OS has far fewer vulnerabilities even for an old base image. This shows the 
+benefits of a greatly reduced attack surface.
