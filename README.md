@@ -22,3 +22,5 @@ like Alpine should be used.
 * Realizing not getting CVE positives on old versions of Alpine may be part of the lesson. 
 The slimmer OS has far fewer vulnerabilities even for an old base image. This shows the 
 benefits of a greatly reduced attack surface.
+* I had trouble determining the base image used for the 1.15.8 image of fusionauth. I think I 
+need to learn docker inspect better.
