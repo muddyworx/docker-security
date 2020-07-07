@@ -1,5 +1,13 @@
 # Milestone 2
 
+## Cleanup for MS2
+
+* I need to start the clair server up as part of my Makefile. Make sure to use 
+latest date for the DB.
+* Why are policies being run in a privileged container? Not even sure what this 
+option means. Time to hit the docs.
+* Add more targets to Makefile. My build pipeline is too simplistic.
+
 ## Thoughts on security scan
 
 * My Hugo-Builder image passed clair's scan, even when changing the version to 3.8. 
