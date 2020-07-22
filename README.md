@@ -4,8 +4,12 @@
 
 * I need to start the clair server up as part of my Makefile. Make sure to use 
 latest date for the DB.
-* Why are policies being run in a privileged container? Not even sure what this 
+* Why are policies run in a privileged container? Not even sure what this 
 option means. Time to hit the docs.
+    - Root users in a privileged container run as root on the host system.
+    - Container isolation is essentially not in effect.
+    - https://blog.trendmicro.com/trendlabs-security-intelligence/why-running-a-privileged-container-in-docker-is-a-bad-idea/
+    - I'm still not sure why. My policies seem to work even though I'm not.
 * Add more targets to Makefile. My build pipeline is too simplistic.
 
 ## Thoughts on security scan
